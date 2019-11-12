@@ -7,14 +7,17 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['passw
     $mail = $_POST['mail'];
 
     // Errors handling
+
+
+    // Query
+    $sql = "INSERT INTO user(login, mdp, email) VALUES(:login, PASSWORD(:mdp), :email)";
+    $query = $pdo->prepare($sql);
+    $query->execute(array(
+        'login' => $username,
+        'mdp' => $password,
+        'email' => $mail
+    ));
 }
 
-$sql = "INSERT INTO user(login, mdp, email) VALUES(:login, PASSWORD(:mdp), :email)";
-$query = $pdo->prepare($sql);
-$query->execute(array(
-    'login' => $username,
-    'mdp' => $password,
-    'email' => $mail
-));
 
 ?>

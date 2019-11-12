@@ -3,7 +3,7 @@ if(isset($_GET['id']))
     header('Location: index.php');
 ?>
 
-<form action='index.php?action=makeNewPost' method='post' class="newpostForm">
+<form action='index.php?action=makeNewPost' method='post' class="newpostForm form-centered">
     <h1>Publier un post</h1>
 
     <label for="username">Titre</label>

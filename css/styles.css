@@ -1,4 +1,6 @@
+
 html {
+
     font-size: 62.5%;
     font-family: "Fira Sans";
     box-sizing: border-box;
@@ -11,14 +13,6 @@ body {
 
 h1 {
     font-size: 2.4rem;
-}
-
-h2 {
-
-}
-
-h3 {
-
 }
 
 ul {
@@ -64,7 +58,7 @@ strong {
 
 /* LOG IN FORM */
 
-.loginForm, form {
+.loginForm, .form-centered {
     width: 30%;
     margin: 0 auto;
 }
@@ -73,17 +67,30 @@ strong {
     width: 50%;
 }
 
-form label {
+.searchbar-wrapper {
+    display: flex;
+    margin: 10px;
+}
+
+.searchbar-wrapper input {
+
+}
+
+.searchbar-wrapper input[type="submit"] {
+
+}
+
+.form-centered label {
     margin: 1rem 0;
     font-size: 1.6rem;
     font-weight: 700;
 }
 
-form label:first-child {
+.form-centered label:first-child {
     margin: 1rem 0 1rem 0;
 }
 
-form h1 {
+.form-centered h1 {
     margin: 3rem 0;
     padding: 1rem 2rem;
     border-radius: .3rem;
@@ -92,13 +99,13 @@ form h1 {
     color: #fff;
 }
 
-form input, form label, form textarea {
+.form-centered input, .form-centered label, .form-centered textarea {
     display: block;
     min-width: 94.5%;
     max-width: 94.5%;
 }
 
-form input, form textarea {
+.form-centered input, .form-centered textarea {
     margin-bottom: 2rem;
     padding: 1rem;
     border-radius: .3rem;
@@ -107,18 +114,18 @@ form input, form textarea {
     font-size: 1.6rem;
 }
 
-form textarea {
+.form-centered textarea {
     font-family: "Fira Sans";
 }
 
-form input[type="submit"] {
+.form-centered input[type="submit"] {
     min-width: 30%;
     background: #111;
     border: none;
     color: #FFF;
 }
 
-form input:focus, form textarea:focus {
+.form-centered input:focus, form textarea:focus {
     border: 1px solid #4CAF50;
 }
 
@@ -130,13 +137,24 @@ form input:focus, form textarea:focus {
 /*** POST ***/
 
 .post {
-    border: 2px solid #111;
-    border-radius: 10px;
+    border-bottom: 2px solid #111;
     padding: 10px;
-    margin: 50px;
+    margin-top: 50px;
+    margin-left: 50px;
     max-width: 50%;
 }
 
 .post-title  {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 2.6rem;
+}
 
+/*** FOOTER ***/
+
+footer {
+    margin-top: 100px;
+    background: #111;
+    color: #fff;
+    padding: 1rem 0;
 }

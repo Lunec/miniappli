@@ -3,7 +3,7 @@ if(isset($_GET['id']))
     header('Location: index.php');
 ?>
 
-<form action='index.php?action=creerCompte' method='post'>
+<form action='index.php?action=creerCompte' method='post' class="form-centered">
     <h1>Inscription</h1>
 
     <label for="username">Nom d'utilisateur</label>

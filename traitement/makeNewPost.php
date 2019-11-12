@@ -1,8 +1,8 @@
 <?php
 
 if(isset($_POST['submit']) && isset($_POST['titre']) && isset($_POST['contenu'])) {
-    $titre = strip_tags($_POST['titre']);
-    $contenu = strip_tags($_POST['contenu']);
+    $titre = htmlspecialchars($_POST['titre']);
+    $contenu = htmlspecialchars($_POST['contenu']);
 
     // Errors handling
 } else {

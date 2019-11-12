@@ -1,12 +1,11 @@
 <?php
 
 include("config/config.php");
-include("config/bd.php"); // commentaire
+include("config/bd.php");
 include("divers/balises.php");
 include("config/actions.php");
 session_start();
 ob_start(); // Je démarre le buffer de sortie : les données à afficher sont stockées
-
 
 ?>
 <!DOCTYPE html>

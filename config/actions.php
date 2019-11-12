@@ -9,5 +9,6 @@ $listeDesActions = array(
     "deconnexion" => "traitement/deconnexion.php",
     "creerCompte" => "traitement/creerCompte.php",
     "newpost"     => "vues/newPost.php",
-    'makeNewPost' => 'traitement/makeNewPost.php'
+    'makeNewPost' => 'traitement/makeNewPost.php',
+    'rechercher'  => 'traitement/rechercher.php'
 );

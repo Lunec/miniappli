@@ -1,12 +1,9 @@
-<?php
+<?php if(isset($_POST['search']) && isset($_POST['searchbar'])) {
+    $users = searchInUsers($pdo, $_POST['searchbar']);
+    echo '<ul>Résultat de la recherche:';
 
-if(isset($_POST['search']) && isset($_POST['searchbar'])) {
-    $search = htmlspecialchars($_POST['searchbar']);
-
-    $sql = 'SELECT * FROM user WHERE login LIKE ?%';
-    $query = $pdo->prepare($sql);
-    $query->execute($search);
+    while($user = $users->fetch()) {
+        echo '<li><a href="index.php?id=' . $user['id'] . '">' . $user['login'] . '</a></li>';
+    }
+    echo '</ul>';
 }
-
-
-?>

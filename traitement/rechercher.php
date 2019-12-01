@@ -1,4 +1,4 @@
-<?php if(isset($_POST['search']) && isset($_POST['searchbar'])) {
+<?php if(isset($_POST['searchbar'])) {
     $users = searchInUsers($pdo, $_POST['searchbar']);
     echo '<ul>Résultat de la recherche:';
 

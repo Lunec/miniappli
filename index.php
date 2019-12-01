@@ -8,6 +8,10 @@ include("Modele.php");
 session_start();
 ob_start(); // Je démarre le buffer de sortie : les données à afficher sont stockées
 
+function triggerDebugMessage($message) {
+    echo '<div class="error-message">' . $message . '</div>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,38 +19,41 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>miniappli</title>
+    <title>MySpace</title>
 
     <link href="./css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
-    <script src="js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
 
 <?php /* Messages de debug */
 if (isset($_SESSION['info'])) {
-    echo "<div>
-          <strong>Information : </strong> " . $_SESSION['info'] . "</div>";
+    echo '<p class="error-message">' . $_SESSION['info'] . '</p>';
     unset($_SESSION['info']);
 }
 
-// Quelle est l'action à faire ?
-    if (isset($_GET["action"])) {
-        $action = $_GET["action"];
-    } else {
-        $action = "accueil";
-    }
+if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]) { // Si pas d'id ou id de la personne connectée on affiche le mur
+    $id = $_SESSION["id"];
+} else {
+    $id = $_GET["id"];
+}
 
-    // Est ce que cette action existe dans la liste des actions
-    if (array_key_exists($action, $listeDesActions) == false) {
-        include("vues/404.php"); // NON : page 404
-    } else {
-        include($listeDesActions[$action]); // Oui, on la charge
-    }
+if (isset($_GET["action"])) { // Quelle est l'action à faire ?
+    $action = $_GET["action"];
+} else {
+    $action = "feed"; // Action par défaut: fil d'actualités
+}
 
-    ob_end_flush(); // Je ferme le buffer, je vide la mémoire et affiche tout ce qui doit l'être
+if (array_key_exists($action, $listeDesActions) == false) {
+    include("vues/404.php");
+} else {
+    include($listeDesActions[$action]); // Chargement du contenu à afficher
+}
+
+ob_end_flush();
 ?>
 
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>

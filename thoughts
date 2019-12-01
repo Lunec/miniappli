@@ -1,0 +1,25 @@
+===========================================================================================
+
+Quand une personne arrive sur le site, elle peut être 
+- Connectée: isset($_SESSION['id']);
+- Non connectée
+
+Si elle n'est pas connectée, on la redirige vers la page welcome
+
+Si elle est connectée, on regarde les actions:
+- Soit rien n'est renseigné dans l'URL et on affiche le fil d'actualité
+- Soit une id est renseignée et on affiche le profil de la personne possédant cet id
+
+Lorsque l'on est sur le profil d'une personne, on regarde si l'utilisateur est son ami
+- Si oui, on affiche le mur de la personne, sur lequel on peut publier.
+	Sont affichés: son nom, sa photo, ses posts, sa bannière
+- Sinon, on affiche un bouton pour envoyer une invitation, et quelque chose à la place du mur
+
+Actions
+
+- Publier
+- Inviter / Supprimer un ami
+- Poster un commentaire
+- Liker un post
+
+

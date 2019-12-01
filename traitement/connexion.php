@@ -3,30 +3,22 @@
 $username = "";
 $password = "";
 
-$sql = "SELECT * FROM user WHERE login=? AND mdp=PASSWORD(?)";
-$query = $pdo->prepare($sql);
-
-if(isset($_POST['username']) && isset($_POST['password'])) {
-    // Getting values
-    $username = $_POST['username'];
+if(isset($_POST['login']) && isset($_POST['password'])) {
+    $login = $_POST['login'];
     $password = $_POST['password'];
 
-    // Exceptions
-}
+    $loginFeedback = login($pdo, $login, $password);
 
-$query->execute(array($username, $password));
-
-$line = $query->fetch(); // ici le login est unique, donc on sait que l'on peut avoir zero ou une seule ligne.
-if(!$line) {
-    header('Location: index.php?action=login');
+    if($loginFeedback) { // If login was successfull
+        $_SESSION['id'] = $loginFeedback['id'];
+        $_SESSION['login'] = $loginFeedback['login'];
+        header('Location: index.php');
+    } else {
+        $_SESSION['info'] = "Couldn't log in.";
+        header('Location: index.php?action=accueil');
+    }
 } else {
-    $_SESSION['id'] = $line['id'];
-    $_SESSION['login'] = $line['login'];
-    header('Location: index.php');
+    header('Location: index.php?action=accueil');
 }
-
-// Si $line est faux le couple login mdp est mauvais, on retourne au formulaire
-
-// sinon on crée les variables de session $_SESSION['id'] et $_SESSION['login'] et on va à la page d'accueil
 
 ?>

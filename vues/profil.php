@@ -5,9 +5,10 @@ if(!isset($_SESSION['id'])) {
 
 include('main-navbar.php');
 include('sidebar.php');
+$posts = getPostsFor($pdo, $_GET['id']);
 ?>
 
-<div class="main-content-area">
+<div class="main-content-area profile-main">
     <div class="profile">
         <div class="profile-banner"></div>
 
@@ -19,7 +20,14 @@ include('sidebar.php');
 
                 <span class="profile-name"><?= getLoginFromID($pdo, $id); ?></span>
             </div>
-            <?php if(!areUsersFriends($pdo, $id)): ?>
+            <?php if(areUsersFriends($pdo, $id) && $id != $_SESSION['id']): ?>
+
+            <form action="index.php?action=delete_friend&id=<?= $id ?>" class="profile-controls" method="post">
+                <input type="submit" value="Retirer de la liste d'amis"/>
+            </form>
+
+        <?php elseif((!areUsersFriends($pdo, $id) && !friendRequestSentAlready($pdo, $id)) && $id != $_SESSION['id']): ?>
+
             <form action="index.php?action=ajouter&id=<?= $id ?>" class="profile-controls" method="post">
                 <input type="submit" value="Envoyer une invitation"/>
             </form>
@@ -27,5 +35,9 @@ include('sidebar.php');
         </div>
 
     </div>
-    <?php include('wall.php') ?>
+    <?php if(areUsersFriends($pdo, $id) || $_SESSION['id'] == $id):
+        include('posts_layout.php');
+    else: ?>
+
+    <?php endif; ?>
 </div>

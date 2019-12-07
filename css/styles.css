@@ -1,3 +1,14 @@
+/*** COLORS
+
+Navbar: #342347;
+Sidebar: #5A466A
+CTA: D5A4AE;
+
+***/
+
+
+
+
 * {
     box-sizing: border-box;
 }
@@ -9,6 +20,7 @@ html {
 
 body {
     margin: 0;
+    background: #F2DFEC;
 }
 
 p, ul, li, a {
@@ -49,7 +61,7 @@ input::placeholder {
     position: fixed;
     width: 100%;
     bottom: 0;
-    z-index: 1;
+    z-index: 999;
     font-size: 1.4rem;
 }
 
@@ -68,7 +80,7 @@ input::placeholder {
     align-items: center;
     padding: 1rem;
 
-    background: #160048;
+    background: #342347;
     z-index: 2;
     height: 60px;
     position: fixed;
@@ -140,7 +152,7 @@ input::placeholder {
     padding: 1rem;
     width: 25%;
     min-height: 100vh;
-    background: #232349;
+    background: #5A466A;
     position: fixed;
     z-index: 1;
 }
@@ -153,9 +165,28 @@ input::placeholder {
     text-align: center;
 }
 
+.sidebar-search {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
+
+.sidebar-search input {
+    padding: 1rem;
+    border-radius: 30px;
+    border: none;
+}
+
 .sidebar-friend {
     display: flex;
     align-items: center;
+}
+
+.sidebar-friend input[type="submit"] {
+    border: 1px solid #fff;
+    background: none;
+    color: #fff;
+    margin-left: 2rem;
+    cursor: pointer;
 }
 
 .sidebar .avatar-small, .sidebar-connected-indicator, .sidebar-friend-name {
@@ -181,16 +212,6 @@ input::placeholder {
 
 /*** MAIN CONTENT AREA ***/
 
-/*
-.layout-grid {
-    grid-template-areas:
-        "navbar navbar"
-        "sidebar content"
-    ;
-}
-
-*/
-
 .main-content-area {
     margin-left: 25%;
     margin-top: 60px;
@@ -202,7 +223,6 @@ input::placeholder {
     width: 100%;
     margin: 0;
     padding: 5rem;
-    background: #F2DFEC;
     overflow: auto;
 }
 
@@ -210,10 +230,8 @@ input::placeholder {
 
 .newpost-bar {
     display: flex;
-    align-items: center;
     background: #fff;
     border-radius: 10px;
-    width: 80%;
     margin: 0 auto 4rem auto;
 }
 
@@ -222,61 +240,79 @@ input::placeholder {
 }
 
 .newpost-bar .avatar-small {
-    margin: 0 .5rem;
+    margin: .5rem;
 }
 
 .newpost-form {
-    display: flex;
     width: 100%;
 }
 
-.newpost-form input {
-    height: 50px;
+.newpost-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+#newpost-text {
     border: none;
-}
-
-.newpost-input {
+    outline: none;
+    resize: none;
+    margin: 2.5rem 1rem;
     width: 90%;
+    line-height: 2.6rem;
 }
 
-.newpost-submit {
-    background: #fff;
-    border: 3px solid #C18EA5;
-    padding: 1rem 2rem;
-    border-radius: 0 10px 10px 0;
-
+#newpost-media {
+    border: none;
+    background: none;
+    color: #D5A4AE;
+    font-size: 1.4rem;
     font-weight: bold;
-    color: #C18EA5;
     cursor: pointer;
-    transition: all .5s;
 }
 
-.newpost-submit:hover {
-    background: #C18EA5;
+#newpost-submit {
+    border: none;
+    background: #D5A4AE;
     color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    margin-right: 5rem;
+    cursor: pointer;
 }
-
 /* Post */
 
 .post {
     background: #fff;
     border-radius: 10px;
     margin-bottom: 2rem;
+    padding: 1rem 2rem;
     transition: box-shadow 200ms;
 }
 
 .post:hover {
-  box-shadow: 0 3px 6px #C18EA5, 0 3px 6px #C18EA5;
+    box-shadow: 0 3px 6px #C18EA5, 0 3px 6px #C18EA5;
 }
 
-.post-main {
+.post-header {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
 }
 
 .post-author {
+    display: flex;
+    align-items: center;
+}
+
+.post-author-name {
     text-transform: capitalize;
+    margin-left: 1rem;
+}
+
+.post-date {
+    font-size: 1.2rem;
 }
 
 .post-body {
@@ -294,25 +330,23 @@ input::placeholder {
     line-height: 2.4rem;
 }
 
-.post-date {
-    border-radius: 10px;
-    width: 10%;
-    min-width: 8%;
-    height: 30%;
-    padding: 1rem;
+.post-controls {
+    display: flex;
+    justify-content: flex-end;
+}
 
-    background: #C18EA5;
-    color: #fff;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
+.post-controls .icon {
+    margin-right: 2rem;
+}
+
+.post-controls .icon:last-child {
+    margin-right: 0;
 }
 
 .post-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    background: #C18EA5;
 }
 
 .post-comment-box {
@@ -327,21 +361,14 @@ input::placeholder {
     min-width: 500px;
 }
 
-.post-controls {
-    float: right;
-    padding: 1rem 2rem;
-    text-align: center;
-}
-
-.post-controls a {
-    color: #fff;
-    font-weight: bold;
-}
-
 /* Profile */
 
 .profile {
     background: #F2DFEC;
+}
+
+.profile-main .feed {
+    padding-top: 0;
 }
 
 .profile-banner {
@@ -356,7 +383,7 @@ input::placeholder {
     height: 100px;
     border-radius: 50%;
     position: relative;
-    top: -50px;
+    bottom: 50px;
 }
 
 .profile-picture img {

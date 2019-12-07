@@ -6,11 +6,14 @@ $listeDesActions = array(
     "profil"      => "vues/profil.php",
     "accueil"     => "vues/accueil.php",
 
+    "accept_friend_request" => "traitement/accept_friend_request.php",
+    'delete_friend' => "traitement/delete_friend.php",
     "connexion"   => "traitement/connexion.php",
     "deconnexion" => "traitement/deconnexion.php",
-    "inscription" => "traitement/inscription.php",
+    "inscription" => "traitement/creerCompte.php",
     'publier'     => 'traitement/publier.php',
     'rechercher'  => 'traitement/rechercher.php',
+    'rechercher_ami' => 'traitement/rechercher_ami.php',
     'delete_post' => 'traitement/delete_post.php',
     'ajouter'     => 'traitement/ajouter.php'
 );

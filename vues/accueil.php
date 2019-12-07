@@ -22,28 +22,23 @@
             <h2>Inscription</h2>
 
             <div class="form-control">
-                <label for="forename">Prénom</label>
-                <input type="text" placeholder="Gilles"/>
-            </div>
-
-            <div class="form-control">
-                <label for="surname">Nom</label>
-                <input type="text" placeholder="Audemard"/>
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" placeholder="Audemard"/>
             </div>
 
             <div class="form-control">
                 <label for="email">E-mail</label>
-                <input type="email" placeholder="email@mail.com"/>
+                <input type="email" name="email" placeholder="email@mail.com"/>
             </div>
 
             <div class="form-control">
                 <label for="password">Mot de passe</label>
-                <input type="password" placeholder="Entrez un mot de passe sûr"/>
+                <input type="password" name="password" placeholder="Entrez un mot de passe sûr"/>
             </div>
 
             <div class="form-control">
-                <label for="password_confirm">Password</label>
-                <input type="password" placeholder="Confirmez le mot de passe"/>
+                <label for="password_confirm">Confirmez le mot de passe</label>
+                <input type="password" name="password_confirm" placeholder="Confirmez le mot de passe"/>
             </div>
 
             <input type="submit" value="Inscription"/>

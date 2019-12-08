@@ -69,7 +69,7 @@ function sendFriendRequest($pdo, $id) {
 
 function getPendingFriendRequests($pdo) {
     if(!isLoggedIn())
-        return "Impossible d'obtenir la liste des invitations en attente: vous n'êtes pas connecté.";
+        return false;
     $query = $pdo->prepare("SELECT user.* FROM user WHERE id IN(SELECT idUtilisateur1 FROM lien WHERE idUtilisateur2=? AND etat='attente')");
     $query->execute([$_SESSION['id']]);
     return $query;

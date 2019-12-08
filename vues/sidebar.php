@@ -5,12 +5,14 @@ $pendingFriendRequests = getPendingFriendRequests($pdo);
 ?>
 
 <div class="sidebar">
-    <h2>Mes amis</h2>
+    <h2>Astronautes connectés</h2>
     <form class="sidebar-search" method="post" action="index.php?action=rechercher_ami"/>
         <input name="friend-search" type="text" placeholder="Rechercher"/>
     </form>
     <ul class="sidebar-friendslist">
-    <?php while($user = $pendingFriendRequests->fetch()){?>
+    <?php
+
+    while($user = $pendingFriendRequests->fetch()){?>
 
         <li class="sidebar-friend">
             <a href="index.php?action=profil&id=<?= $user['id']; ?>"><img class="avatar-small" src="imgs/avatar1.png" alt="avatar de <?= $user['login']?>"/></a>

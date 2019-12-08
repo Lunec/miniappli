@@ -5,7 +5,12 @@ if(!isset($_SESSION['id'])) {
 
 include('main-navbar.php');
 include('sidebar.php');
-$posts = getPostsFor($pdo, $_GET['id']);
+if(isset($_GET['id'])) {
+    $posts = getPostsFrom($pdo, $_GET['id']);
+} else {
+    $posts = getPostsFrom($pdo, $_SESSION['id']);
+}
+
 ?>
 
 <div class="main-content-area profile-main">

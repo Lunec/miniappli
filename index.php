@@ -33,7 +33,8 @@ if (isset($_SESSION['info'])) {
 }
 
 if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]) { // Si pas d'id ou id de la personne connectée on affiche le mur
-    $id = $_SESSION["id"];
+    if(isset($_SESSION['id']))
+        $id = $_SESSION["id"];
 } else {
     $id = $_GET["id"];
 }

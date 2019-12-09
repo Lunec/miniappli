@@ -4,13 +4,10 @@ include("config/config.php");
 include("divers/balises.php");
 include("config/actions.php");
 include("config/bd.php");
+include("functions.php");
 include("Modele.php");
 session_start();
 ob_start(); // Je démarre le buffer de sortie : les données à afficher sont stockées
-
-function triggerDebugMessage($message) {
-    echo '<div class="error-message">' . $message . '</div>';
-}
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +25,7 @@ function triggerDebugMessage($message) {
 
 <?php /* Messages de debug */
 if (isset($_SESSION['info'])) {
-    echo '<p class="error-message">' . $_SESSION['info'] . '</p>';
+    echo $_SESSION['info'];
     unset($_SESSION['info']);
 }
 

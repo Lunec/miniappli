@@ -10,7 +10,7 @@ function getLoginFromID($pdo, $id) {
     $query->execute([$id]);
     $line = $query->fetch();
     if(!$line)
-        return '<div class="error-message">Erreur: impossible de récupérer le login correspondant à cette id."></div>';
+        return 'Erreur: impossible de récupérer le login correspondant à cette id.';
     return $line['login'];
 }
 
@@ -22,16 +22,31 @@ function createPost($pdo, $contenu, $idAmi) {
         'idAuteur' => $_SESSION['id'],
         'idAmi' => $idAmi
     ));
-    return '<div class="success-message">Votre post a bien été publié.</div>';
+    return $query;
+}
+
+function comment($pdo, $comment, $postID) {
+    $query = $pdo->prepare("INSERT INTO commentaire(contenu, date, idAuteur, idPost) VALUES(:contenu, NOW(), :idAuteur, :idPost)");
+    $query->execute(array(
+        'contenu' => $comment,
+        'idAuteur' => $_SESSION['id'],
+        'idPost' => $postID
+    ));
+    return $query;
 }
 
 function deletePost($pdo, $id) {
     $query = $pdo->prepare('DELETE FROM ecrit WHERE id=?');
     $query->execute([$id]);
-    $rowCount = $query->rowCount();
-    if($rowCount == 0)
-        echo '<div class="error-message">Impossible de supprimer le post. <a href="index.php">Accueil</a></div>';
+    if(!$query)
+        triggerDebugMessage('Impossible de supprimer le post.');
     header('Location:index.php');
+}
+
+function getCommentsOfPost($pdo, $postID) {
+    $query = $pdo->prepare('SELECT * FROM commentaire WHERE idPost=?');
+    $query->execute([$postID]);
+    return $query;
 }
 
 function getUserList($pdo) {

@@ -10,5 +10,6 @@
         <a href="index.php?action=profil" class="navbar-profile-button">
             <img src="imgs/avatar1.png" alt="Avatar" class="avatar-small"/>
         </a>
+        <a href="index.php?action=deconnexion" class="nav-link" >Déconnexion</a>
     </div>
 </nav>

@@ -14,13 +14,23 @@ function getLoginFromID($pdo, $id) {
     return $line['login'];
 }
 
-function createPost($pdo, $contenu, $idAmi) {
-    $query = $pdo->prepare("INSERT INTO ecrit(titre, contenu, dateEcrit, idAuteur, idAmi) VALUES(:title, :body, NOW(), :idAuteur, :idAmi)");
+function createPost($pdo, $idAmi, $contenu) {
+    $query = $pdo->prepare("INSERT INTO ecrit(contenu, dateEcrit, idAuteur, idAmi) VALUES(:body, NOW(), :idAuteur, :idAmi)");
     $query->execute(array(
-        'title' => "Random test title",
         'body' => $contenu,
         'idAuteur' => $_SESSION['id'],
         'idAmi' => $idAmi
+    ));
+    return $query;
+}
+
+function createPostWithImage($pdo, $idAmi, $contenu, $image) {
+    $query = $pdo->prepare("INSERT INTO ecrit(contenu, dateEcrit, idAuteur, idAmi, image) VALUES(:body, NOW(), :idAuteur, :idAmi, :image)");
+    $query->execute(array(
+        'body' => $contenu,
+        'idAuteur' => $_SESSION['id'],
+        'idAmi' => $idAmi,
+        'image' => $image
     ));
     return $query;
 }
@@ -36,10 +46,18 @@ function comment($pdo, $comment, $postID) {
 }
 
 function deletePost($pdo, $id) {
+    $query = $pdo->prepare('DELETE FROM commentaire WHERE idPost=?');
+    $query->execute([$id]);
+
+    if(!$query)
+        triggerDebugMessage('Impossible de supprimer les commentaires associés à ce post.');
+
     $query = $pdo->prepare('DELETE FROM ecrit WHERE id=?');
     $query->execute([$id]);
+
     if(!$query)
         triggerDebugMessage('Impossible de supprimer le post.');
+
     header('Location:index.php');
 }
 
@@ -51,7 +69,21 @@ function getCommentsOfPost($pdo, $postID) {
 
 function getUserList($pdo) {
     $query = $pdo->prepare('SELECT * FROM user');
-    $query->execute();
+    return $query->execute();
+}
+
+function getFeed($pdo) {
+    // 1. Récupérer les amis
+    // 2. Récupérer les posts de ces amis
+
+    $query = "SELECT * FROM ecrit JOIN user ON idAuteur=user.id WHERE idAmi=:id OR idAuteur=:id OR idAuteur IN
+    (SELECT idUtilisateur1 FROM lien WHERE etat='ami' AND idUtilisateur2=:id)
+    OR  idAuteur IN ( SELECT idUtilisateur2 FROM lien WHERE etat='ami' AND idUtilisateur1=:id)
+    ORDER BY dateEcrit DESC";
+    $query = $pdo->prepare($query);
+    $query->execute(array(
+        'id' => $_SESSION['id']
+    ));
     return $query;
 }
 
@@ -68,7 +100,7 @@ function getPostsFor($pdo, $id) {
     if(!is_numeric($id))
         return "Impossible d'obtenir la liste des billets: l'id entrée est invalide.";
 
-    $query = $pdo->prepare('SELECT * FROM ecrit WHERE idAmi=? AND idAmi!=idAuteur order by dateEcrit DESC');
+    $query = $pdo->prepare('SELECT * FROM ecrit WHERE idAmi=? order by dateEcrit DESC');
     $query->execute([$id]);
     return $query;
 }
@@ -150,9 +182,9 @@ function acceptFriendRequest($pdo, $id) {
 }
 
 function deleteFriend($pdo, $id) {
-    $sql = "DELETE FROM lien WHERE etat='ami' AND idUtilisateur1=? AND idUtilisateur2=?";
+    $sql = "DELETE FROM lien WHERE etat='ami' AND ((idUtilisateur1=? AND idUtilisateur2=?) OR (idUtilisateur2=? AND idUtilisateur1=?))";
     $query = $pdo->prepare($sql);
-    if($query->execute([$id, $_SESSION['id']])) {
+    if($query->execute([$id, $_SESSION['id'], $id, $_SESSION['id']])) {
         return true;
     }
 

@@ -7,10 +7,15 @@
             <h2 class="post-author-name"><?= $loginAuteur ?></h2>
         </div>
 
-        <div class="post-date">4 DEC 2019 à 00:01</div>
+        <div class="post-date"><?= $dateEcrit ?></div>
     </div>
 
     <div class="post-body">
+        <?php if($postImage): ?>
+            <div class="post-img">
+                <img src="<?= $postImage ?>"/>
+            </div>
+        <?php endif; ?>
         <p class="post-content"><?= $contenu ?></p>
     </div>
 

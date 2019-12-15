@@ -1,6 +1,6 @@
 <?php
 
-$friends = getUserList($pdo);
+$friends = getFriends($pdo);
 $pendingFriendRequests = getPendingFriendRequests($pdo);
 ?>
 

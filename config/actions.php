@@ -5,7 +5,7 @@ $listeDesActions = array(
     "feed"     => "vues/feed.php",
     "profil"      => "vues/profil.php",
     "accueil"     => "vues/accueil.php",
-    
+
     "comment"     => 'traitement/create_comment.php',
     "accept_friend_request" => "traitement/accept_friend_request.php",
     'delete_friend' => "traitement/delete_friend.php",

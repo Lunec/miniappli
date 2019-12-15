@@ -3,6 +3,10 @@
     Accueil: Page d'inscription et connexion.
 */
 
+if(isset($_COOKIE['remember_me'])) {
+    
+}
+
 ?>
 
 <div class="accueil-container">

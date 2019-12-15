@@ -6,9 +6,9 @@ if(!isset($_SESSION['id'])) {
 include('main-navbar.php');
 include('sidebar.php');
 if(isset($_GET['id'])) {
-    $posts = getPostsFrom($pdo, $_GET['id']);
+    $posts = getPostsFor($pdo, $_GET['id']);
 } else {
-    $posts = getPostsFrom($pdo, $_SESSION['id']);
+    $posts = getPostsFor($pdo, $_SESSION['id']);
 }
 
 ?>

@@ -1,13 +1,10 @@
 /*** COLORS
 
 Navbar: #342347;
-Sidebar: #5A466A
-CTA: D5A4AE;
+Sidebar: #5A466A;
+CTA: #D5A4AE;
 
 ***/
-
-
-
 
 * {
     box-sizing: border-box;
@@ -101,8 +98,18 @@ input::placeholder {
     align-items: center;
 }
 
+.nav-link {
+    color: #fff;
+    margin: 0 1rem;
+}
+
 .logo {
     width: 80px;
+}
+
+.navbar-profile-button .avatar-small {
+    width: 80px;
+    height: 80px;
 }
 
 /* Search Bar */
@@ -252,6 +259,7 @@ input::placeholder {
 .newpost-controls {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 0;
 }
 
@@ -264,13 +272,17 @@ input::placeholder {
     line-height: 2.6rem;
 }
 
-#newpost-media {
+.newpost-media-label {
     border: none;
     background: none;
     color: #D5A4AE;
     font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
+}
+
+#newpost-media {
+    display: none;
 }
 
 #newpost-submit {
@@ -288,7 +300,7 @@ input::placeholder {
 .post {
     background: #fff;
     border-radius: 10px;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     padding: 1rem 2rem;
     transition: box-shadow 200ms;
 }
@@ -334,9 +346,9 @@ input::placeholder {
 
 .post-img {
     width: 100%;
-    border: 1px solid #ccc;
     overflow: hidden;
     margin-bottom: 3rem;
+    padding: 1rem;
 }
 
 .post-img img {
@@ -344,6 +356,7 @@ input::placeholder {
     height: 100%;
     max-width: 1366px;
     max-height: 728px;
+    border-radius: 10px;
 }
 
 .post-controls {
@@ -380,26 +393,22 @@ input::placeholder {
 
 .comments {
     margin-bottom: 2rem;
-    width: 80%;
 
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .comment {
+    height: 100%;
     background: #fff;
     border-radius: 10px;
     padding: 1rem 2rem;
-    width: 50%;
-    margin-left: 1rem;
+    width: 80%;
+    margin-top: 1rem;
+    overflow: hidden;
 
     display: flex;
-    align-items: center;
     transition: box-shadow 200ms;
-}
-
-.comment:first-child {
-    margin-left: 0;
 }
 
 .comment:hover {
@@ -589,6 +598,25 @@ input::placeholder {
     cursor: pointer;
 }
 
+/* Search responses */
+
+.search-response {
+    list-style: none;
+    padding: 5rem;
+}
+
+.search-response a {
+    display: block;
+    background: #5A466A;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .register-form input[type="submit"]:hover {
     background: #160048;
     color: #fff;
@@ -639,5 +667,14 @@ input::placeholder {
 
     .profile-banner {
         height: 20vh;
+    }
+
+    .comments {
+        display: block;
+    }
+
+    .comment {
+        margin-left: 0;
+        width: 100%;
     }
 }

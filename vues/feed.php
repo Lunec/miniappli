@@ -18,7 +18,7 @@ if(!isset($_SESSION['id'])) {
     include('main-navbar.php');
     include('sidebar.php');
 
-    $posts = getPostsFrom($pdo, $id);
+    $posts = getFeed($pdo);
     echo '<div class="main-content-area">';
     include('posts_layout.php');
     echo '</div>';

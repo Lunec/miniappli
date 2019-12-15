@@ -39,7 +39,7 @@ if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]) { // Si pas d'id ou id d
 if (isset($_GET["action"])) { // Quelle est l'action à faire ?
     $action = $_GET["action"];
 } else {
-    $action = "feed"; // Action par défaut: fil d'actualités
+    $action = "feed"; // Action par défaut: Profil
 }
 
 if (array_key_exists($action, $listeDesActions) == false) {

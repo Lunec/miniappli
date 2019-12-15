@@ -27,7 +27,7 @@ function uploadPostImage() { // Retourne le chemin du fichier si tout se passe b
     if(!isset($erreur)) {
         $fichier = $_SESSION['id'].'_post_image';
 
-        if(file_exists($dossier.$fichier.$extension))
+        while(file_exists($dossier.$fichier.$extension))
             $fichier .= '_';
 
         $fichier .= $extension;

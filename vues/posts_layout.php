@@ -20,7 +20,7 @@
         $contenu = $post['contenu'];
         $dateEcrit = $post['dateEcrit'];
         $idAuteur = $post['idAuteur'];
-        $idPost = $post['id'];
+        $idPost = $post[0];
         $postImage = $post['image'];
         $comments = getCommentsOfPost($pdo, $idPost);
         $loginAuteur = getLoginFromID($pdo, $idAuteur);

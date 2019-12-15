@@ -14,23 +14,14 @@ function getLoginFromID($pdo, $id) {
     return $line['login'];
 }
 
-function createPost($pdo, $idAmi, $contenu) {
-    $query = $pdo->prepare("INSERT INTO ecrit(contenu, dateEcrit, idAuteur, idAmi) VALUES(:body, NOW(), :idAuteur, :idAmi)");
-    $query->execute(array(
-        'body' => $contenu,
-        'idAuteur' => $_SESSION['id'],
-        'idAmi' => $idAmi
-    ));
-    return $query;
-}
-
-function createPostWithImage($pdo, $idAmi, $contenu, $image) {
+function createPost($args) {
+    $pdo = $args['pdo'];
     $query = $pdo->prepare("INSERT INTO ecrit(contenu, dateEcrit, idAuteur, idAmi, image) VALUES(:body, NOW(), :idAuteur, :idAmi, :image)");
     $query->execute(array(
-        'body' => $contenu,
+        'body' => $args['text'],
         'idAuteur' => $_SESSION['id'],
-        'idAmi' => $idAmi,
-        'image' => $image
+        'idAmi' => $args['idAmi'],
+        'image' => $args['image']
     ));
     return $query;
 }
@@ -69,7 +60,8 @@ function getCommentsOfPost($pdo, $postID) {
 
 function getUserList($pdo) {
     $query = $pdo->prepare('SELECT * FROM user');
-    return $query->execute();
+    $query->execute();
+    return $query;
 }
 
 function getFeed($pdo) {

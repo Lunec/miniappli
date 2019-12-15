@@ -16,7 +16,7 @@
     <div class="main-content-area">
         <ul class="search-response">
             <?php while($user = $users->fetch()): ?>
-                <li><a href="index.php?action=profil&id=<?= $user['id'] ?>"><img src="<?= $user[''] ?>" alt="avatar"/><?= $user['login'] ?></a></li>
+                <li><a href="index.php?action=profil&id=<?= $user['id'] ?>"><img src="<?= $user['avatar'] ?>" alt="avatar"/><?= $user['login'] ?></a></li>
             <?php endwhile; ?>
         </ul>
     </div>

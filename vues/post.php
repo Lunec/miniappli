@@ -11,12 +11,12 @@
     </div>
 
     <div class="post-body">
+        <p class="post-content"><?= $contenu ?></p>
         <?php if($postImage): ?>
             <div class="post-img">
                 <img src="<?= $postImage ?>"/>
             </div>
         <?php endif; ?>
-        <p class="post-content"><?= $contenu ?></p>
     </div>
 
     <div class="post-controls">
